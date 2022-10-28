@@ -1,19 +1,9 @@
-const slideImages = [
-  "slide-images/eberhard-grossgasteiger-y2azHvupCVo-unsplash.jpg",
-  "slide-images/lukasz-szmigiel-jFCViYFYcus-unsplash.jpg",
-  "slide-images/mohamed-nohassi-odxB5oIG_iA-unsplash.jpg",
-  "slide-images/oc-gonzalez-xg8z_KhSorQ-unsplash.jpg",
-  "slide-images/quino-al-mBQIfKlvowM-unsplash.jpg",
-  "slide-images/tim-swaan-eOpewngf68w-unsplash.jpg",
-  "slide-images/v2osk-1Z2niiBPg5A-unsplash.jpg",
-  "slide-images/wil-stewart-pHANr-CpbYM-unsplash.jpg",
-];
+const images = document.querySelectorAll("#frame > img");
 
 let currentIndex = 0;
 const autoForwardInterval = 5000; //milliseconds
 
 const frame = document.getElementById("frame");
-const imageDiv = document.querySelector(".imageDiv");
 const leftArrow = document.querySelector(".arrow-left");
 const rightArrow = document.querySelector(".arrow-right");
 
@@ -26,30 +16,36 @@ rightArrow.addEventListener("click", () => {
 });
 
 const slideBack = () => {
+  toggleShow(images[currentIndex]);
+
   if (currentIndex === 0) {
-    currentIndex = slideImages.length - 1;
+    currentIndex = images.length - 1;
   } else {
     currentIndex = currentIndex - 1;
   }
-  displayImage(slideImages[currentIndex]);
+
+  toggleShow(images[currentIndex]);
 };
 
 const slideForward = () => {
-  if (currentIndex === slideImages.length - 1) {
+  toggleShow(images[currentIndex]);
+
+  if (currentIndex === images.length - 1) {
     currentIndex = 0;
   } else {
     currentIndex = currentIndex + 1;
   }
-  displayImage(slideImages[currentIndex]);
+
+  toggleShow(images[currentIndex]);
 };
 
 const autoForward = () => {
   setInterval(slideForward, autoForwardInterval);
 };
 
-const displayImage = (imagePath) => {
-  imageDiv.style.backgroundImage = `url('${imagePath}')`;
+const toggleShow = (image) => {
+  image.classList.toggle("show");
 };
 
-displayImage(slideImages[currentIndex]);
+toggleShow(images[currentIndex]);
 autoForward();
