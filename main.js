@@ -10,9 +10,20 @@ const slideImages = [
 ];
 
 let currentIndex = 0;
+const autoForwardInterval = 5000; //milliseconds
 
 const frame = document.getElementById("frame");
 const imageDiv = document.querySelector(".imageDiv");
+const leftArrow = document.querySelector(".arrow-left");
+const rightArrow = document.querySelector(".arrow-right");
+
+leftArrow.addEventListener("click", () => {
+  slideBack();
+});
+
+rightArrow.addEventListener("click", () => {
+  slideForward();
+});
 
 const slideBack = () => {
   if (currentIndex === 0) {
@@ -20,14 +31,8 @@ const slideBack = () => {
   } else {
     currentIndex = currentIndex - 1;
   }
-};
-
-const leftArrow = document.querySelector(".arrow-left");
-
-leftArrow.addEventListener("click", () => {
-  slideBack();
   displayImage(slideImages[currentIndex]);
-});
+};
 
 const slideForward = () => {
   if (currentIndex === slideImages.length - 1) {
@@ -35,17 +40,16 @@ const slideForward = () => {
   } else {
     currentIndex = currentIndex + 1;
   }
+  displayImage(slideImages[currentIndex]);
 };
 
-const rightArrow = document.querySelector(".arrow-right");
-
-rightArrow.addEventListener("click", () => {
-  slideForward();
-  displayImage(slideImages[currentIndex]);
-});
+const autoForward = () => {
+  setInterval(slideForward, autoForwardInterval);
+};
 
 const displayImage = (imagePath) => {
   imageDiv.style.backgroundImage = `url('${imagePath}')`;
 };
 
 displayImage(slideImages[currentIndex]);
+autoForward();
