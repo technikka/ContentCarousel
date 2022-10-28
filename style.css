@@ -1,0 +1,29 @@
+body {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+#frame {
+  border: 1px solid #dddd;
+  width: 800px;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow-left:hover, .arrow-right:hover  {
+  cursor: pointer;
+  /* #66b2b2 */
+  filter: invert(76%) sepia(8%) saturate(1675%) hue-rotate(131deg) brightness(84%) contrast(91%);
+}
+
+
+
+.imageDiv {
+  width: 80%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
