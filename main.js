@@ -1,7 +1,7 @@
 const images = document.querySelectorAll("#frame > img");
 
 let currentIndex = 0;
-const autoForwardInterval = 5000; //milliseconds
+let autoForwardInterval = 5000; //milliseconds
 
 const frame = document.getElementById("frame");
 const leftArrow = document.querySelector(".arrow-left");
@@ -9,10 +9,12 @@ const rightArrow = document.querySelector(".arrow-right");
 
 leftArrow.addEventListener("click", () => {
   slideBack();
+  resetAutoForwardTimer(); 
 });
 
 rightArrow.addEventListener("click", () => {
   slideForward();
+  resetAutoForwardTimer(); 
 });
 
 const slideBack = () => {
@@ -43,30 +45,55 @@ const slideForward = () => {
   toggleNav(navCircles[currentIndex]);
 };
 
-const autoForward = () => {
-  setInterval(slideForward, autoForwardInterval);
+let autoForwardTimer = setInterval(slideForward, autoForwardInterval);
+
+const resetAutoForwardTimer = () => {
+  clearInterval(autoForwardTimer);
+  autoForwardTimer = setInterval(slideForward, autoForwardInterval);
 };
 
 const toggleShow = (image) => {
   image.classList.toggle("show");
 };
 
-const navContainer = document.querySelector('.carousel-nav');
+const findImageIndex = (node) => {
+  for (i = 0; i < navCircles.length; i++) {
+    if (navCircles[i] === node) {
+      return i;
+    }
+  }
+};
+
+const goToImage = (index) => {
+  toggleNav(navCircles[currentIndex]);
+  toggleShow(images[currentIndex]);
+
+  currentIndex = index;
+
+  toggleNav(navCircles[currentIndex]);
+  toggleShow(images[currentIndex]);
+};
+
+const navContainer = document.querySelector(".carousel-nav");
 
 const createNav = (() => {
-  for (i=0; i < images.length; i++) {
-    const circle = document.createElement('div');
+  for (i = 0; i < images.length; i++) {
+    const circle = document.createElement("div");
     navContainer.appendChild(circle);
+
+    circle.addEventListener("click", () => {
+      const goToIndex = findImageIndex(circle);
+      goToImage(goToIndex);
+      resetAutoForwardTimer(); 
+    });
   }
 })();
 
-const navCircles = document.querySelectorAll('.carousel-nav > div');
+const navCircles = document.querySelectorAll(".carousel-nav > div");
 
 const toggleNav = (circle) => {
   circle.classList.toggle("selected");
-}
-
-
+};
 
 toggleNav(navCircles[currentIndex]);
 toggleShow(images[currentIndex]);
