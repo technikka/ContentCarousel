@@ -1,6 +1,7 @@
-body {
+#content {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+  align-items: center;
   justify-content: center;
 }
 
@@ -26,9 +27,27 @@ body {
   opacity: 0%;
   position: absolute;
   left: 10%;
-  transition: opacity 2s ease-in-out;
+  transition: opacity 2.5s ease-in-out;
 }
 
 #frame > img.show {
   opacity: 100%;
+}
+
+.carousel-nav {
+  margin-top: 10px;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 2px;
+}
+
+.carousel-nav > div {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid #dddd;
+}
+
+.carousel-nav > div.selected {
+  background-color: #66b2b2; 
 }

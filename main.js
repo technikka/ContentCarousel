@@ -17,6 +17,7 @@ rightArrow.addEventListener("click", () => {
 
 const slideBack = () => {
   toggleShow(images[currentIndex]);
+  toggleNav(navCircles[currentIndex]);
 
   if (currentIndex === 0) {
     currentIndex = images.length - 1;
@@ -25,10 +26,12 @@ const slideBack = () => {
   }
 
   toggleShow(images[currentIndex]);
+  toggleNav(navCircles[currentIndex]);
 };
 
 const slideForward = () => {
   toggleShow(images[currentIndex]);
+  toggleNav(navCircles[currentIndex]);
 
   if (currentIndex === images.length - 1) {
     currentIndex = 0;
@@ -37,6 +40,7 @@ const slideForward = () => {
   }
 
   toggleShow(images[currentIndex]);
+  toggleNav(navCircles[currentIndex]);
 };
 
 const autoForward = () => {
@@ -47,5 +51,23 @@ const toggleShow = (image) => {
   image.classList.toggle("show");
 };
 
+const navContainer = document.querySelector('.carousel-nav');
+
+const createNav = (() => {
+  for (i=0; i < images.length; i++) {
+    const circle = document.createElement('div');
+    navContainer.appendChild(circle);
+  }
+})();
+
+const navCircles = document.querySelectorAll('.carousel-nav > div');
+
+const toggleNav = (circle) => {
+  circle.classList.toggle("selected");
+}
+
+
+
+toggleNav(navCircles[currentIndex]);
 toggleShow(images[currentIndex]);
-autoForward();
+// autoForward();
