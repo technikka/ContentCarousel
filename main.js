@@ -4,8 +4,8 @@ let currentIndex = 0;
 let autoForwardInterval = 5000; //milliseconds
 
 const frame = document.getElementById("frame");
-const leftArrow = document.querySelector(".arrow-left");
-const rightArrow = document.querySelector(".arrow-right");
+const leftArrow = document.querySelector(".arrow-left > img");
+const rightArrow = document.querySelector(".arrow-right > img");
 
 leftArrow.addEventListener("click", () => {
   slideBack();
