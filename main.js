@@ -1,4 +1,4 @@
-const images = document.querySelectorAll("#frame > img");
+const images = document.querySelectorAll(".img-container > img");
 
 let currentIndex = 0;
 let autoForwardInterval = 5000; //milliseconds
@@ -45,7 +45,7 @@ const slideForward = () => {
   toggleNav(navCircles[currentIndex]);
 };
 
-let autoForwardTimer = setInterval(slideForward, autoForwardInterval);
+// let autoForwardTimer = setInterval(slideForward, autoForwardInterval);
 
 const resetAutoForwardTimer = () => {
   clearInterval(autoForwardTimer);
@@ -97,4 +97,3 @@ const toggleNav = (circle) => {
 
 toggleNav(navCircles[currentIndex]);
 toggleShow(images[currentIndex]);
-// autoForward();
