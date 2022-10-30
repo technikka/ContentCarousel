@@ -7,11 +7,37 @@
 
 #frame {
   border: 1px solid #dddd;
-  width: 1000px;
+  width: 800px;
   height: 534px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr 7fr 1fr;
+  grid-template-columns: 1fr 7fr 1fr;
+}
+
+.backdrop-top {
+  grid-area: 1 / 1 / 2 / 4;
+  background: black;
+  opacity: 60%;
+
+}
+
+.backdrop-bottom {
+  grid-area: 3 / 1 / 4 / 4;
+  background: black;
+  opacity: 60%;
+}
+
+.backdrop-left {
+  grid-area: 2 / 1 / 3 / 2;
+  background: black;
+  opacity: 60%;
+}
+
+.backdrop-right {
+  grid-area: 2 / 3 / 3 / 4;
+  background: black;
+  opacity: 60%;
+
 }
 
 .arrow-left:hover, .arrow-right:hover  {
@@ -22,7 +48,7 @@
 
 .img-container {
   position: relative;
-  width: 80%;
+  width: 100%;
   height: 100%;
   object-fit: contain;
 }
